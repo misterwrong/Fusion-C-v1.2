@@ -21,17 +21,26 @@
 #
 #
 .PHONY: all, clean, fclean, emulator, re
-HEX2BINDIR = ./										# where is the hex2bin folder : ./ if installed in system
-HEX2BIN = hex2bin       							# name of hex2bin command name
-ASM = sdasz80  										# ASM compilator command name
-CC = sdcc  											# SDCC commpilator command name
-C_FILES :=  $(CompFile) #test.c  $(wildcard *.c) 	# which files to compil. File name must be sent by Sublime Text Build Systeme into the $(CompFile) variable
-DEST := dsk/ 										# destination of executable files
-ASM_FILES := $(wildcard *.s)  						# definition of sources files 
-REL_FILES := $(subst .s,.rel,$(ASM_FILES))          # definition of .rel files
-
-IHX_FILES := $(subst .c,.ihx,$(C_FILES))  			# definition of .ihx files 
-COM_FILES := $(subst .ihx,.com,$(IHX_FILES)) 		# definition of .com files 
+# where is the hex2bin folder : ./ if installed in system
+HEX2BINDIR = ./
+# name of hex2bin command name
+HEX2BIN = hex2bin
+# ASM compilator command name
+ASM = sdasz80
+# SDCC commpilator command name
+CC = sdcc
+# which files to compil. File name must be sent by Sublime Text Build Systeme into the $(CompFile) variable
+C_FILES :=  $(CompFile) $(wildcard *.c)
+# destination of executable files
+DEST := dsk/
+# definition of sources files
+ASM_FILES := $(wildcard *.s)
+# definition of .rel files
+REL_FILES := $(subst .s,.rel,$(ASM_FILES))
+# definition of .ihx files
+IHX_FILES := $(subst .c,.ihx,$(C_FILES)) 
+# definition of .com files
+COM_FILES := $(subst .ihx,.com,$(IHX_FILES))
 
 # Folder where to find other compiled files to include
 INCLUDEDIR = ./fusion-c/include/
@@ -66,7 +75,7 @@ ADDR_CODE = 0x106
 #ADDR_CODE = 0x180 
 ADDR_DATA = 0x0
 
-# The above line is the full command line used by SDD to compil and link your to source file to an MSX-DOS executable
+# The above line is the full command line used by SDDC to compile and link your to source file to an MSX-DOS executable
 CCFLAGS = --code-loc $(ADDR_CODE) --data-loc $(ADDR_DATA) --disable-warning 196 -mz80 --no-std-crt0 --opt-code-size fusion.lib -L $(LIBDIR) $(crt0) $(INC1) $(INC2) $(INC3) $(INC4) $(INC5) $(INC6) $(INC7) $(INC8) $(INC9) $(INCA) $(INCB) $(INCC) $(INCD) $(INCE) $(INCF)
 
 
