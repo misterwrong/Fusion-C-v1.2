@@ -18,7 +18,7 @@ elif [ "$(uname -s)" = "Linux" ]; then
 	
 	if [ "${xopenmsx}" = "" ]; then
 		echo "...Now Starting OpenMSX "
-		/opt/openMSX/bin/openmsx -script ./openMSX/emul_start_config.txt
+		openmsx -script ./openMSX/emul_start_config.txt
 	else
 		echo "...openMSX already running "
 	fi
